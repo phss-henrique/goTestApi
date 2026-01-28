@@ -30,7 +30,7 @@ func main(){
 			//handler.Delete(w, r)			
 		}
 	})
-	http.HandleFunc("/teste/id", handler.FindById)
+	//http.HandleFunc("/teste/id", handler.FindById)
 
 	log.Println("Server running on port: 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
