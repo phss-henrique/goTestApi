@@ -1,4 +1,4 @@
-module testeApiGo
+module goTestApi
 
 go 1.25.6
 

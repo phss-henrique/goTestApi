@@ -2,7 +2,7 @@ package repositories
 
 import (
 	"database/sql"
-	"testeApiGo/models"
+	"goTestApi/models"
 )
 
 type UserRepository struct {
@@ -24,7 +24,43 @@ func (r *UserRepository) GetAll() ([]models.User, error){
 
 	var users []models.User
 
-	
+	for rows.Next(){
+		var u models.User
+		if err := rows.Scan(&u.Id, &u.Nome, &u.Numero ); err != nil{
+			return nil, err
+		} 
+		users = append(users,u)
+	}
 
 	return users, nil
+}
+
+func (r *UserRepository) FindById(id int) (*models.User, error){
+	var u modes.User
+
+	err := r.DB.QueryRow(`SELECT id,nome,numero FROM teste WHERE id = $1 `, id).Scan(&u.Id, &u.Nome, &u.Numero)
+
+	if error := nil{
+		return nil, error
+	}
+
+	return &u, nil
+}
+
+func (r *UserRepository) Update(user *models.User) error{
+	
+	_, error := r.DB.Exec(
+		`UPDATE teste SET where nome = $1, numero = $2 id = $3`,user.Nome,user.Numero,user.Id 
+	)
+
+	return error
+
+}
+
+
+func (r *UserRepository) Delete(id int) error{
+		_, error := r.DB.Exec(
+			`DELETE FROM teste WHERE id = $1`,id
+		)
+	return error
 }
