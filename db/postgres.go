@@ -1,13 +1,15 @@
 package db
+
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/lib/pq"
 	"log"
+
+	_ "github.com/lib/pq"
 )
 
-func Connect() *sql.DB{
-	dsn := "host=localhost port=5432 user=pedro password=root dbname=pedro sslmode=disable"
+func Connect() *sql.DB {
+	dsn := "host=localhost port=5432 user=pedrao password=root dbname=pedro sslmode=disable"
 
 	db, err := sql.Open("postgres", dsn)
 	if err != nil {

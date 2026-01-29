@@ -18,7 +18,7 @@ func main(){
 
 		switch r.Method {
 		case http.MethodGet:
-			//handler.GetAll(w, r)
+			handler.GetAll(w, r)
 		
 		case http.MethodPost:
 			handler.Create(w, r)
@@ -30,7 +30,7 @@ func main(){
 			//handler.Delete(w, r)			
 		}
 	})
-	//http.HandleFunc("/teste/id", handler.FindById)
+	http.HandleFunc("/teste/all", handler.GetAll)
 
 	log.Println("Server running on port: 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))

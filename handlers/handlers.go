@@ -26,3 +26,19 @@ func (h *UserHandler) Create(w http.ResponseWriter, r *http.Request) {
 	
 	
 }
+
+func (h *UserHandler) GetAll(w http.ResponseWriter, r *http.Request) {
+	var users []models.User
+
+	users, err := h.Repo.GetAll() 
+		if err != nil{
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(users)
+}
+
+func (h *UserHandler) Update(w http.ResponseWriter, r *http.Request){
+	
+}
